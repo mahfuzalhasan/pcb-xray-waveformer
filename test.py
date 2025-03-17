@@ -12,6 +12,7 @@ from utils import dice_score
 from transformers import SamModel, SamProcessor, SamConfig
 from model import SAMWithSpatialAdapters
 from dataset_xray import PCBXRayDataset
+from transformation import CustomTransforms
 
 # Function to evaluate the model on the test set
 def evaluate_model_on_test_set(model, data_loader, device, num_classes=5):
@@ -61,6 +62,10 @@ def evaluate_model_on_test_set(model, data_loader, device, num_classes=5):
 best_model_path = "saved_best_model/best_model_epoch_25.pth"
 test_image_folder_path = "test/"
 test_annotation_path = "annotation/test211121516.json"
+
+# Determine the device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f"Using device: {device}")
 
 sam_model = SamModel.from_pretrained('facebook/sam-vit-huge')
 # Load the best model for evaluation on the test set
