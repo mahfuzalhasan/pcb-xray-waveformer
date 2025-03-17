@@ -2,6 +2,7 @@ import cv2
 from torch.utils.data import Dataset, DataLoader
 import json
 import numpy as np
+import os
 from pycocotools import mask as coco_mask
 # Custom dataset class
 class PCBXRayDataset(Dataset):
