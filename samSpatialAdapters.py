@@ -168,7 +168,7 @@ for fold, (train_idx, val_idx) in enumerate(kf.split(image_files)):
     train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True, num_workers=0)
     val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=0)
 
-    train_loss, val_loss, best_model_path = train_model(train_loader, val_loader, fold, num_classes=5)
+    train_loss, val_loss, best_model_path = train_model(train_loader, val_loader, fold, fold_output_path, num_classes=5)
 
     # Evaluate on validation set
     model_with_adapters.load_state_dict(torch.load(best_model_path))
